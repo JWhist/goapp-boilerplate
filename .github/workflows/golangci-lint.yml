@@ -15,6 +15,9 @@ jobs:
     name: lint
     runs-on: ubuntu-latest
     steps:
+      - name: Inject private module configuration
+        run: |
+          git config --global url."https://${{ secrets.GH_TOKEN }}:x-oauth-basic@github.com/".insteadOf "https://github.com/"
       - uses: actions/checkout@v3
       - uses: actions/setup-go@v4
         with:
