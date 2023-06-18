@@ -7,9 +7,9 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/jwhist/jw-goapp/api"
-	"github.com/jwhist/jw-goapp/config"
-	"github.com/jwhist/jw-goapp/server"
+	"github.com/JWhist/jw-goapp/api"
+	"github.com/JWhist/jw-goapp/config"
+	"github.com/JWhist/jw-goapp/server"
 	"github.com/spf13/cobra"
 )
 

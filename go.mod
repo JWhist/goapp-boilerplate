@@ -1,4 +1,4 @@
-module github.com/jwhist/jw-goapp
+module github.com/JWhist/jw-goapp
 
 go 1.20
 

@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/jwhist/jw-goapp/config"
+	"github.com/JWhist/jw-goapp/config"
 )
 
 func NewServer(c config.Config) *http.Server {
