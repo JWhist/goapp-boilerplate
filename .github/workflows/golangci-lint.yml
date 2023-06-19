@@ -22,7 +22,11 @@ jobs:
         with:
           go-version-file: go.mod
           cache: true
-      - run: git config --global url."https://${{secrets.GITHUB_TOKEN}}:x-oauth-basic@github.com/".insteadOf "https://github.com/"
+      - run: git config --global url."ssh@github.com/JWhist".insteadOf "https://github.com/JWhist"
+      - name: Give GitHub Actions access to private repository
+        uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{ secrets.PRIV_TOKEN }}
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v3.6.0
         with:
