@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GOPRIVATE: "github.com/JWhist/*"
+      CGO_ENABLED: 0
     steps:
       - uses: actions/checkout@v3
         with:
