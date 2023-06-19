@@ -14,13 +14,13 @@ jobs:
     env:
       GOPRIVATE: "github.com/JWhist/*"
     steps:
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: true
       - uses: actions/setup-go@v4
         with:
           go-version-file: go.mod
           cache: true
-      - uses: actions/checkout@v3
-        with:
-          persist-credentials: true
       - run: git config --global url."https://${{secrets.GITHUB_TOKEN}}:x-oauth-basic@github.com/".insteadOf "https://github.com/"
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v3
