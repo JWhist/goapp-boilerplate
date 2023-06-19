@@ -47,6 +47,9 @@ func serve() {
 	}()
 
 	http.HandleFunc("/", api.HelloHandler)
-	server.ListenAndServe()
+	err := server.ListenAndServe()
+	if err != nil {
+		panic(err)
+	}
 	defer server.Close()
 }
