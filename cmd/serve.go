@@ -2,12 +2,10 @@ package cmd
 
 import (
 	"fmt"
-	"net/http"
 	"os"
 	"os/signal"
 	"syscall"
 
-	"github.com/JWhist/jw-goapp/api"
 	"github.com/JWhist/jw-goapp/config"
 	"github.com/JWhist/jw-goapp/server"
 	"github.com/spf13/cobra"
@@ -46,7 +44,7 @@ func serve() {
 		server.Close()
 	}()
 
-	http.HandleFunc("/", api.HelloHandler)
+	// http.HandleFunc("/", api.HelloHandler)
 	err := server.ListenAndServe()
 	if err != nil {
 		panic(err)
