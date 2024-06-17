@@ -2,12 +2,13 @@ openapi: "3.0.0"
 info:
   version: 1.0.0
   title: Minimal ping API server
+  description: Skeleton API server for testing purposes
 paths:
   /ping:
     get:
       responses:
         '200':
-          description: pet response
+          description: ping response
           content:
             application/json:
               schema:
