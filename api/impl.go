@@ -2,11 +2,15 @@
 package api
 
 import (
+	_ "embed"
 	"encoding/json"
 	"net/http"
 )
 
 type Server struct{}
+
+//go:embed api.yml
+var Spec []byte
 
 func NewServer() Server {
 	return Server{}

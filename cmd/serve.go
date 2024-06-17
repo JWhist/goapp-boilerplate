@@ -44,7 +44,6 @@ func serve() {
 		server.Close()
 	}()
 
-	// http.HandleFunc("/", api.HelloHandler)
 	err := server.ListenAndServe()
 	if err != nil {
 		panic(err)

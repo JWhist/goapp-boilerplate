@@ -7,6 +7,7 @@ import (
 
 	"github.com/JWhist/jw-goapp/api"
 	"github.com/JWhist/jw-goapp/config"
+	"github.com/flowchartsman/swaggerui"
 )
 
 func NewServer(c config.Config) *http.Server {
@@ -14,6 +15,8 @@ func NewServer(c config.Config) *http.Server {
 	server := api.NewServer()
 
 	r := http.NewServeMux()
+
+	r.Handle("/swagger/", http.StripPrefix("/swagger", swaggerui.Handler(api.Spec)))
 
 	// get an `http.Handler` that we can use
 	h := api.HandlerFromMux(server, r)
