@@ -1,4 +1,4 @@
-//go:generate oapi-codegen --config=/Users/jordanwhistler/jw-goapp/api/config.yml /Users/jordanwhistler/jw-goapp/api/api.yml
+//go:generate oapi-codegen --config=/Users/jordanwhistler/goapp-boilerplate/api/config.yml /Users/jordanwhistler/goapp-boilerplate/api/api.yml
 package api
 
 import (

@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/JWhist/jw-goapp/api"
-	"github.com/JWhist/jw-goapp/config"
+	"github.com/JWhist/goapp-boilerplate/api"
+	"github.com/JWhist/goapp-boilerplate/config"
 	"github.com/flowchartsman/swaggerui"
 )
 

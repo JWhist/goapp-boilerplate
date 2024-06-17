@@ -6,8 +6,8 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/JWhist/jw-goapp/config"
-	"github.com/JWhist/jw-goapp/server"
+	"github.com/JWhist/goapp-boilerplate/config"
+	"github.com/JWhist/goapp-boilerplate/server"
 	"github.com/spf13/cobra"
 )
 

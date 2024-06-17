@@ -1,6 +1,6 @@
 package main
 
-import "github.com/JWhist/jw-goapp/cmd"
+import "github.com/JWhist/goapp-boilerplate/cmd"
 
 func main() {
 	cmd.Execute()
