@@ -14,3 +14,12 @@ Define your spec in the spec yaml files, then run `make gen` to generate the typ
 generates docs from api spec:
 
 swagger UI: https://github.com/flowchartsman/swaggerui
+
+#### Running locally
+
+run `make dev` to build and run the container locally. By default it will use port 3000. If you change the configuration,
+be sure to update the dockerfile and docker compose with any port changes.
+
+#### Testing
+
+run `make test` to run tests, or run them manually with the `go test` command
