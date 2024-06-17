@@ -24,7 +24,7 @@ var serveCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(serveCmd)
-	serveCmd.PersistentFlags().StringVarP(&configPath, "config", "c", "config/config.yaml", "Path to config file")
+	serveCmd.PersistentFlags().StringVarP(&configPath, "config", "c", "config/defaultConfig.yaml", "Path to config file")
 }
 
 func serve() {

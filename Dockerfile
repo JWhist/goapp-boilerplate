@@ -20,6 +20,6 @@ FROM ubuntu:20.04 AS app
 
 EXPOSE 3000
 COPY --from=base /svc/dist/app /app
-COPY --from=base /svc/config/config.yaml /config/config.yaml
+COPY --from=base /svc/config/defaultConfig.yaml /config/defaultConfig.yaml
 CMD ["/app", "serve"]
 
