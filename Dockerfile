@@ -4,7 +4,6 @@ WORKDIR /svc
 
 ARG GIT_CREDS
 ENV GIT_CREDS=${GIT_CREDS}
-ENV GOPRIVATE=github.com/JWhist/*
 RUN set -eux; \
   git config --global credential.helper store; \
   git config --global --unset-all 'url.ssh://git@github.com.insteadOf' || echo "No ssh config"; \
