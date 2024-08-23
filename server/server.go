@@ -18,6 +18,10 @@ func NewServer(c config.Config) *http.Server {
 
 	r.Handle("/swagger/", http.StripPrefix("/swagger", swaggerui.Handler(api.Spec)))
 
+	r.Handle("/", http.HandlerFunc((func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("Hello, World!!!\n"))
+	})))
+
 	// get an `http.Handler` that we can use
 	h := api.HandlerFromMux(server, r)
 	return &http.Server{
