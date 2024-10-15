@@ -22,7 +22,10 @@ func NewServer(c config.Config) *http.Server {
 	r.Handle("/metrics", promhttp.Handler())
 
 	r.Handle("/", http.HandlerFunc((func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("Hello, World!!!\n"))
+		_, err := w.Write([]byte("Hello, World!!!\n"))
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+		}
 	})))
 
 	// get an `http.Handler` that we can use
