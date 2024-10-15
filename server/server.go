@@ -8,6 +8,7 @@ import (
 	"github.com/JWhist/goapp-boilerplate/api"
 	"github.com/JWhist/goapp-boilerplate/config"
 	"github.com/flowchartsman/swaggerui"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
 func NewServer(c config.Config) *http.Server {
@@ -17,6 +18,8 @@ func NewServer(c config.Config) *http.Server {
 	r := http.NewServeMux()
 
 	r.Handle("/swagger/", http.StripPrefix("/swagger", swaggerui.Handler(api.Spec)))
+
+	r.Handle("/metrics", promhttp.Handler())
 
 	r.Handle("/", http.HandlerFunc((func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("Hello, World!!!\n"))
