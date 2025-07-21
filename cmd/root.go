@@ -1,3 +1,4 @@
+// Package cmd provides the CLI command definitions and execution logic.
 package cmd
 
 import (
@@ -12,6 +13,7 @@ var rootCmd = &cobra.Command{
 	Long:  `Fires up a basic http server, configure using yaml file.`,
 }
 
+// Execute runs the root command and handles any errors.
 func Execute() {
 	err := rootCmd.Execute()
 	if err != nil {

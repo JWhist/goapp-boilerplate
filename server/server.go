@@ -1,3 +1,4 @@
+// Package server provides HTTP server functionality for the application.
 package server
 
 import (
@@ -13,6 +14,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
+// NewServer creates and configures a new HTTP server with the provided configuration.
 func NewServer(c config.Config) *http.Server {
 	// create a type that satisfies the `api.ServerInterface`, which contains an implementation of every operation from the generated code
 	server := api.NewServer()

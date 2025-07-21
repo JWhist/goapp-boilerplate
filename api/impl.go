@@ -7,17 +7,21 @@ import (
 	"net/http"
 )
 
+// Server implements the API server interface.
 type Server struct{}
 
+// Spec contains the embedded OpenAPI specification.
+//
 //go:embed api.yml
 var Spec []byte
 
+// NewServer creates a new instance of the API server.
 func NewServer() Server {
 	return Server{}
 }
 
-// (GET /ping)
-func (Server) GetPing(w http.ResponseWriter, r *http.Request) {
+// GetPing handles the GET /ping endpoint.
+func (Server) GetPing(w http.ResponseWriter, _ *http.Request) {
 	resp := Pong{
 		Ping: "pong",
 	}

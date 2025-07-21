@@ -17,7 +17,7 @@ var serveCmd = &cobra.Command{
 	Use:   "serve",
 	Short: "Start server",
 	Long:  `Starts a generic API server at the configuration specified in the yaml file.`,
-	Run: func(cmd *cobra.Command, args []string) {
+	Run: func(_ *cobra.Command, _ []string) {
 		serve()
 	},
 }
@@ -41,12 +41,18 @@ func serve() {
 	go func() {
 		sig := <-sigs
 		fmt.Printf("Received %v, shutting down\n", sig)
-		server.Close()
+		if err := server.Close(); err != nil {
+			fmt.Printf("Error closing server: %v\n", err)
+		}
 	}()
 
 	err := server.ListenAndServe()
 	if err != nil {
 		panic(err)
 	}
-	defer server.Close()
+	defer func() {
+		if err := server.Close(); err != nil {
+			fmt.Printf("Error closing server: %v\n", err)
+		}
+	}()
 }

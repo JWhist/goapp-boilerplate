@@ -1,3 +1,4 @@
+// Package static embeds the UI static files into the Go binary.
 package static
 
 import (

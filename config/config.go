@@ -1,3 +1,4 @@
+// Package config provides configuration management for the application.
 package config
 
 import (
@@ -8,10 +9,12 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
+// Config represents the application configuration structure.
 type Config struct {
 	Port int `yaml:"port"`
 }
 
+// NewConfig loads configuration from the specified YAML file path.
 func NewConfig(path string) Config {
 	c := loadFile[Config](path)
 	return c

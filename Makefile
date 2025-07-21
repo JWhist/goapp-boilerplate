@@ -1,4 +1,4 @@
-.PHONY: build build-ui run dev test clean
+.PHONY: build build-ui run dev test clean lint
 
 dev:
 	make build
@@ -25,6 +25,25 @@ build-local: build-ui
 
 run-local: build-local
 	./bin/goapp-boilerplate serve
+
+lint:
+	@echo "Running golangci-lint with GitHub Actions default settings..."
+	golangci-lint run --no-config \
+		--enable=errcheck,govet,ineffassign,staticcheck,unused \
+		--enable=bodyclose,goconst,gocritic,gocyclo \
+		--enable=nakedret,nolintlint,prealloc,revive \
+		--enable=unconvert,unparam,whitespace \
+		--max-issues-per-linter=50 \
+		--max-same-issues=3 \
+		--timeout=5m
+
+lint-fix:
+	@echo "Running golangci-lint with auto-fix..."
+	golangci-lint run --no-config \
+		--enable=errcheck,govet,ineffassign,staticcheck,unused \
+		--enable=unconvert,whitespace \
+		--fix \
+		--timeout=5m
 
 clean:
 	rm -rf ui/build
