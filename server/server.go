@@ -3,10 +3,12 @@ package server
 import (
 	"fmt"
 	"net/http"
+	"strings"
 	"time"
 
 	"github.com/JWhist/goapp-boilerplate/api"
 	"github.com/JWhist/goapp-boilerplate/config"
+	"github.com/JWhist/goapp-boilerplate/static"
 	"github.com/flowchartsman/swaggerui"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
@@ -21,12 +23,26 @@ func NewServer(c config.Config) *http.Server {
 
 	r.Handle("/metrics", promhttp.Handler())
 
-	r.Handle("/", http.HandlerFunc((func(w http.ResponseWriter, r *http.Request) {
-		_, err := w.Write([]byte("Hello, World!!!\n"))
-		if err != nil {
-			http.Error(w, err.Error(), http.StatusInternalServerError)
+	// Get the UI handler
+	uiHandler := static.GetUIHandler()
+
+	// Handle static assets (CSS, JS, etc.)
+	r.Handle("/static/", uiHandler)
+
+	// Custom handler for root and SPA routing
+	r.HandleFunc("/", func(w http.ResponseWriter, req *http.Request) {
+		path := req.URL.Path
+
+		// Serve API routes (let the API handler deal with them later)
+		if strings.HasPrefix(path, "/ping") || strings.HasPrefix(path, "/api/") {
+			// Let it fall through to the API handler
+			http.NotFound(w, req)
+			return
 		}
-	})))
+
+		// Serve static files and handle SPA routing
+		uiHandler.ServeHTTP(w, req)
+	})
 
 	// get an `http.Handler` that we can use
 	h := api.HandlerFromMux(server, r)

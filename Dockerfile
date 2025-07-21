@@ -1,3 +1,19 @@
+FROM node:18-alpine AS ui-builder
+
+WORKDIR /ui
+
+# Copy package.json and package-lock.json (if available)
+COPY ui/package*.json ./
+
+# Install dependencies
+RUN npm ci --only=production
+
+# Copy UI source code
+COPY ui/ ./
+
+# Build the React app
+RUN npm run build
+
 FROM golang:latest AS base
 
 WORKDIR /svc
@@ -11,6 +27,9 @@ RUN set -eux; \
 
 COPY go.mod go.sum /svc/
 RUN go mod download
+
+# Copy the built UI into the static directory
+COPY --from=ui-builder /ui/build /svc/static/ui
 
 COPY . /svc
 RUN CGO_ENABLED=0 GOOS=linux go build -o /svc/dist/app
